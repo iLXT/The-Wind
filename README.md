@@ -1,2 +1,2 @@
-# The-Wind
-a repository for study
+# Blog
+简单的个人博客项目，尚未部署到服务器，实现了二级评论
