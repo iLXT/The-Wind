@@ -38,9 +38,9 @@ public class TagShowController {
             System.out.println(blog);
         }
         PageInfo<Blog> pageInfo = new PageInfo<>(blogs);
-        model.addAttribute("tags", tags);
-        model.addAttribute("pageInfo", pageInfo);
-        model.addAttribute("activeTagId", id);
+        model.addAttribute("tags1", tags);
+        model.addAttribute("pageInfo2", pageInfo);
+        model.addAttribute("activeTagId2", id);
 
         return "tags";
     }

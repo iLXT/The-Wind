@@ -35,9 +35,9 @@ public class TypeShowController {
         }
         List<Blog> blogs = blogService.getByTypeId(id);
         PageInfo<Blog> pageInfo = new PageInfo<>(blogs);
-        model.addAttribute("types", types);
-        model.addAttribute("pageInfo", pageInfo);
-        model.addAttribute("activeTypeId", id);
+        model.addAttribute("types1", types);
+        model.addAttribute("pageInfo1", pageInfo);
+        model.addAttribute("activeTypeId1", id);
 
         return "types";
     }
