@@ -70,4 +70,9 @@ public class TagServiceImpl implements TagService {
     public int deleteTag(Long id) {
         return tagDao.deleteTag(id);
     }
+
+    @Override
+    public List<Tag> getTagsList(Long id) {
+        return tagDao.getTagsList(id);
+    }
 }

@@ -40,6 +40,7 @@
         </collection>
     </resultMap>
 
+
     <delete id="deleteBlog">
         delete from t_blog where id = #{id}
     </delete>
@@ -203,7 +204,17 @@
     <select id="getBlogCommentTotal" resultType="Integer">
         select count(*) from blog.t_comment
     </select>
+    <select id="getBlogCommentTotalById" resultType="Integer">
+        select count(*) from blog.t_comment where blog.t_comment.blog_id=#{id}
+    </select>
 
+    <delete id="deleteTags">
+        delete from blog.t_blog_tags  where blog.t_blog_tags.tag_id=#{tid} and blog.t_blog_tags.blog_id=#{bid}
+    </delete>
+
+    <select id="getBlogAndTag" resultType="Integer">
+        select count(*) from blog.t_blog_tags where blog.t_blog_tags.tag_id=#{tid} and blog.t_blog_tags.blog_id=#{bid}
+    </select>
 
 
 

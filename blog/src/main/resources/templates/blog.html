@@ -455,7 +455,8 @@ h5,h6{font-size:1em;}
             <div id="comment-container"  class="ui teal segment">
                 <div th:fragment="commentList">
                     <div class="ui threaded comments" style="max-width: 100%;">
-                        <h3 class="ui dividing header">评论</h3>
+                        <h3 class="ui dividing header">评论 <div style="text-align: right"> 共<span style="color: #00a8c6" th:text="${commentsTotal}" ></span>条评论</div> </h3>
+
                         <div class="comment" th:each="comment : ${comments}">
                             <a class="avatar">
                                 <img src="../static/images/avatar.jpg" th:src="@{${comment.avatar}}"><!--https://unsplash.it/100/100?image=1005-->

@@ -30,19 +30,19 @@
             <h3 class="ui pink header">标签</h3>
           </div>
           <div class="right aligned column">
-            共 <h2 class="ui orange header m-inline-block m-text-thin" th:text="${#arrays.length(tags1)}"> 14 </h2> 个
+            共 <h2 class="ui orange header m-inline-block m-text-thin" th:text="${#arrays.length(tags)}"> 14 </h2> 个
           </div>
         </div>
       </div>
 
       <div class="ui attached segment m-padded-tb-large">
-        <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" class="ui basic left pointing large label m-margin-tb-tiny" th:classappend="${tag.id==activeTagId2} ? 'pink'" th:each="tag : ${tags1}">
+        <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" class="ui basic left pointing large label m-margin-tb-tiny" th:classappend="${tag.id==activeTagId} ? 'pink'" th:each="tag : ${tags}">
           <span th:text="${tag.name}">方法论</span> <div class="detail" th:text="${#arrays.length(tag.blogs)}">23</div>
         </a>
       </div>
 
       <div class="ui top attached pink segment">
-        <div class="ui padded vertical segment m-padded-tb-large" th:each="blog : ${pageInfo2.list}">
+        <div class="ui padded vertical segment m-padded-tb-large" th:each="blog : ${pageInfo.list}">
           <div class="ui middle aligned mobile reversed stackable grid">
             <div class="eleven wide column">
               <h3 class="ui header" ><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black" th:text="${blog.title}">你真的理解什么是财富自由吗?</a></h3>
@@ -87,16 +87,16 @@
             <div class="ui bottom attached segment" >
               <div class="ui middle aligned two column grid">
                 <div class="column">
-                  <div class="item"><a class="ui mini pink basic button" th:href="@{/tags(pageNum=${pageInfo2.hasPreviousPage}?${pageInfo2.prePage}:1)}" th:unless="${pageInfo2.isFirstPage}">上一页</a></div>
+                  <div class="item"><a class="ui mini pink basic button" th:href="@{/tags(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}" th:unless="${pageInfo.isFirstPage}">上一页</a></div>
                 </div>
                 <div class="right aligned column">
-                  <div class="item"><a class="ui mini pink basic button" th:href="@{/tags(pageNum=${pageInfo2.hasNextPage}?${pageInfo2.nextPage}:${pageInfo2.pages})}" th:unless="${pageInfo2.isLastPage}">下一页</a></div>
+                  <div class="item"><a class="ui mini pink basic button" th:href="@{/tags(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}" th:unless="${pageInfo.isLastPage}">下一页</a></div>
                 </div>
               </div>
             </div>
 
             <div class="ui segment m-inline-block">
-              <p >当前第<span th:text="${pageInfo2.pageNum}"></span>页，总<span th:text="${pageInfo2.pages}"></span>页，共<span th:text="${pageInfo2.total}"></span>条记录</p>
+              <p >当前第<span th:text="${pageInfo.pageNum}"></span>页，总<span th:text="${pageInfo.pages}"></span>页，共<span th:text="${pageInfo.total}"></span>条记录</p>
             </div>
 
     </div>

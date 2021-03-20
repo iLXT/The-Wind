@@ -110,6 +110,24 @@ public class BlogServiceImpl implements BlogService {
         return blogDao.getBlogViewTotal();
     }
 
+    @Override
+    public int getBlogCommentTotal() {
+        return blogDao.getBlogCommentTotal();
+    }
+    @Override
+    public int getBlogCommentTotalById(Long id) {
+        return blogDao.getBlogCommentTotalById(id);
+    }
+
+    @Override
+    public int deleteTags(Long tid,Long bid) {
+        return blogDao.deleteTags(tid,bid);
+    }
+
+    @Override
+    public int getBlogAndTag(Long tid, Long bid) {
+        return blogDao.getBlogAndTag(tid,bid);
+    }
 
 
     @Override    //新增博客
@@ -140,7 +158,10 @@ public class BlogServiceImpl implements BlogService {
         BlogAndTag blogAndTag = null;
         for (Tag tag : tags) {
             blogAndTag = new BlogAndTag(tag.getId(), blog.getId());
-            blogDao.saveBlogAndTag(blogAndTag);
+            int i = blogDao.getBlogAndTag(tag.getId(), blog.getId());
+            if (i==0) {
+                blogDao.saveBlogAndTag(blogAndTag);
+            }
         }
         return blogDao.updateBlog(blog);
     }

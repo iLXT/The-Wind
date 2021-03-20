@@ -16,9 +16,6 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private CommentDao commentDao;
 
-    @Autowired
-    private BlogDao blogDao;
-
     @Override
     public List<Comment> getCommentByBlogId(Long blogId) {  //查询父评论
         //没有父节点的默认为-1

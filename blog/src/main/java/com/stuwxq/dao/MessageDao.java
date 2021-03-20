@@ -29,4 +29,6 @@ public interface MessageDao {
 
     //删除评论
     void deleteMessage(Long id);
+
+    int getMessageTotal();
 }

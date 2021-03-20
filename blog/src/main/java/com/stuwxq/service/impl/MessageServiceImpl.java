@@ -104,4 +104,9 @@ public class MessageServiceImpl implements MessageService {
     public void deleteMessage(Long id) {
         messageDao.deleteMessage(id);
     }
+
+    @Override
+    public int getMessageTotal() {
+        return messageDao.getMessageTotal();
+    }
 }

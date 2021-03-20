@@ -36,6 +36,9 @@
     <delete id="deleteMessage" >
         delete from t_message where id = #{id}
     </delete>
+    <select id="getMessageTotal" resultType="Integer">
+        select count(*) from t_message
+    </select>
 
 
 </mapper>

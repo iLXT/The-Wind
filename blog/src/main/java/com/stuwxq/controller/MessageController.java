@@ -37,6 +37,7 @@ public class MessageController {
     public String messages(Model model) {
         List<Message> messages = messageService.listMessage();
         model.addAttribute("messages", messages);
+        model.addAttribute("messageTotal",messageService.getMessageTotal());
         return "message::messageList";
     }
 
@@ -57,6 +58,7 @@ public class MessageController {
         messageService.saveMessage(message);
         List<Message> messages = messageService.listMessage();
         model.addAttribute("messages", messages);
+        model.addAttribute("messageTotal",messageService.getMessageTotal());
         return "message::messageList";
     }
 

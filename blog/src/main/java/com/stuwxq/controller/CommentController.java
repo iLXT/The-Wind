@@ -33,6 +33,7 @@ public class CommentController {
     public String comments(@PathVariable Long blogId, Model model){
         model.addAttribute("comments", commentService.getCommentByBlogId(blogId));
         model.addAttribute("blog", blogService.getDetailedBlog(blogId));
+        model.addAttribute("commentsTotal",blogService.getBlogCommentTotalById(blogId));
         return "blog :: commentList";
     }
 

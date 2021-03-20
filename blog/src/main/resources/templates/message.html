@@ -62,7 +62,7 @@
             <div id="message-container" class="ui teal segment">
                 <div th:fragment="messageList">
                     <div class="ui threaded comments" style="max-width: 100%;">
-                        <h3 class="ui dividing header">留言</h3>
+                        <h3 class="ui dividing header">留言<div style="text-align: right">共<span style="color: #00a8c6" th:text="${messageTotal}"></span>条留言</div></h3>
                         <div class="comment" th:each="message : ${messages}">
                             <a class="avatar">
                                 <img src="../static/images/avatar.jpg" th:src="@{${message.avatar}}">
@@ -216,7 +216,7 @@
 
     //发送请求给后端
     function postData() {
-        $("#message-container").load(/*[[@{/messages}]]*/"",{
+        $("#message-container").load(/*[[@{/message}]]*/"",{
             "parentMessage.id" : $("[name='parentMessage.id']").val(),
             // "blog.id" : $("[name='blog.id']").val(),
             "nickname": $("[name='nickname']").val(),

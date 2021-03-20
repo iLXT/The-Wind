@@ -41,8 +41,13 @@
         delete from blog.t_tag where id = #{id}
     </delete>
 
+
     <update id="updateTag" parameterType="Tag">
         update blog.t_tag set name = #{name} where id = #{id};
     </update>
+    <!--select tag_id from t_blog_tags where blog_id=#{id}-->
+    <select id="getTagsList" resultType="Tag">
+        select b.id,b.name from t_blog_tags a,t_tag b where blog_id=#{id} and a.tag_id=b.id
+    </select>
 
 </mapper>

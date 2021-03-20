@@ -2,6 +2,7 @@ package com.stuwxq.dao;
 
 import com.stuwxq.pojo.Blog;
 import com.stuwxq.pojo.BlogAndTag;
+import com.stuwxq.pojo.Tag;
 import com.stuwxq.queryvo.BlogQuery;
 import com.stuwxq.queryvo.SearchBlog;
 import org.apache.ibatis.annotations.Mapper;
@@ -53,6 +54,15 @@ public interface BlogDao {
     int updateViews(Long id);
 
     int getBlogViewTotal();
+
+    int deleteTags(Long tid,Long bid);
+
+    int getBlogCommentTotal();
+
+    int getBlogCommentTotalById(Long id);
+
+    int getBlogAndTag(Long tid,Long bid);
+
 
 
 }

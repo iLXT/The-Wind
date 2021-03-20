@@ -17,4 +17,6 @@ public interface MessageService {
 
     //删除留言
     void deleteMessage(Long id);
+
+    int getMessageTotal();
 }

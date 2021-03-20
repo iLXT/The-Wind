@@ -1,6 +1,8 @@
 package com.stuwxq.controller.admin;
 
 import com.stuwxq.pojo.Blog;
+import com.stuwxq.pojo.BlogAndTag;
+import com.stuwxq.pojo.Tag;
 import com.stuwxq.pojo.User;
 import com.stuwxq.queryvo.BlogQuery;
 import com.stuwxq.queryvo.SearchBlog;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -96,12 +99,21 @@ public class BlogController {
         //设置blog中typeId属性
         blog.setTypeId(blog.getType().getId());
         //给blog中的List<Tag>赋值
-        blog.setTags(tagService.getTagByString(blog.getTagIds()));
-
+        List<Tag> newlist=tagService.getTagByString(blog.getTagIds());
+        blog.setTags(newlist);
+        blog.setTagIds(blog.getTagIds());
         if (blog.getId() == null) {   //id为空，则为新增
             blogService.saveBlog(blog);
         } else {
             blogService.updateBlog(blog);
+
+            List<Tag> oldlist = tagService.getTagsList(blog.getId());
+            for (Tag tag: oldlist) {
+                if (!newlist.contains(tag)){
+                    blogService.deleteTags(tag.getId(),blog.getId());
+                }
+
+            }
         }
 
         attributes.addFlashAttribute("msg", "新增成功");

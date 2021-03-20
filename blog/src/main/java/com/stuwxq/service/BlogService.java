@@ -2,6 +2,7 @@ package com.stuwxq.service;
 
 import com.stuwxq.pojo.Blog;
 import com.stuwxq.pojo.BlogAndTag;
+import com.stuwxq.pojo.Tag;
 import com.stuwxq.queryvo.BlogQuery;
 import com.stuwxq.queryvo.SearchBlog;
 
@@ -45,6 +46,16 @@ public interface BlogService {
     List<Blog> searchAllBlog(Blog blog);  //后台根据标题、分类、推荐搜索博客
 
     int getBlogViewTotal();
+
+    int getBlogCommentTotal();
+
+    int getBlogCommentTotalById(Long id);
+
+    int deleteTags(Long tid,Long bid);
+
+    int getBlogAndTag(Long tid,Long bid);
+
+
 
 
 

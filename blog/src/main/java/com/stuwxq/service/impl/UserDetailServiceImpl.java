@@ -4,6 +4,7 @@ import com.stuwxq.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,7 +28,6 @@ import java.util.List;
  * @date2021/2/1219:44
  */
 @Service
-
 public class UserDetailServiceImpl implements UserDetailsService {
     @Autowired
     private UserServiceImpl userService;
@@ -41,8 +41,12 @@ public class UserDetailServiceImpl implements UserDetailsService {
         HttpSession session = request.getSession();
         //1.根据用户名去数据库查询，如果不存在，则抛出异常
         User user = userService.queryUserByName(username);
+
+
         if (user==null) {
             throw new BadCredentialsException("账号不存在，请重新输入");
+
+
         }else {
            // String encodePwd = passwordEncoder.encode(user.getPassword());//密码：123456
             //System.out.println("加密后密码：" + encodePwd);
