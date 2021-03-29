@@ -61,7 +61,7 @@ public class IndexController {
     }
 
     @GetMapping("/blog/{id}")
-    public String toLogin(@PathVariable Long id, Model model){
+    public String toBlog(@PathVariable Long id, Model model){
         Blog blog = blogService.getDetailedBlog(id);
         model.addAttribute("blog", blog);
         return "blog";

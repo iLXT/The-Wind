@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface UserDao {
-
-    User queryByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
+    //获取User信息
     User queryUserByName(@Param("username")String username);
 }

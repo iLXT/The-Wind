@@ -27,11 +27,6 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<Comment> findSecondaryCommentBySelfId(Long id) {
-        return commentDao.findSecondaryCommentBySelfId(id);
-    }
-
-    @Override
     //接收回复的表单
     public int saveComment(Comment comment) {
         //防止输入集合为null

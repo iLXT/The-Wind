@@ -11,7 +11,6 @@ import com.stuwxq.service.BlogService;
 import com.stuwxq.util.MarkdownUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
 
 @Service
@@ -19,12 +18,10 @@ public class BlogServiceImpl implements BlogService {
 
     @Autowired
     BlogDao blogDao;
-
     @Override
     public Blog getBlog(Long id) {
         return blogDao.getBlog(id);
     }
-
     @Override
     public Blog getDetailedBlog(Long id) {
         Blog blog = blogDao.getDetailedBlog(id);
@@ -35,15 +32,8 @@ public class BlogServiceImpl implements BlogService {
         blog.setContent(MarkdownUtils.markdownToHtmlExtensions(content));  //将Markdown格式转换成html
         // 文章访问数量自增
         blogDao.updateViews(id);
-
         return blog;
     }
-
-    @Override
-    public List<Blog> getAllBlog() {
-        return blogDao.getAllBlog();
-    }
-
     @Override
     public List<Blog> getAllBlog1() {
         return blogDao.getAllBlog1();
@@ -56,9 +46,8 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public List<BlogQuery> getBlogBySearch(SearchBlog searchBlog) {
-        return blogDao.searchByTitleOrTypeOrRecommend(searchBlog);
+        return blogDao.searchByTitleOrType(searchBlog);
     }
-
     @Override
     public List<Blog> getByTypeId(Long typeId) {
         return blogDao.getByTypeId(typeId);
@@ -85,51 +74,17 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public Map<String, List<Blog>> archiveBlog() {
-        List<String> years = blogDao.findGroupYear();
-        Set<String> set = new HashSet<>(years);  //set去掉重复的年份
-        Map<String, List<Blog>> map = new HashMap<>();
-        for (String year : set) {
-            map.put(year, blogDao.findByYear(year));
-        }
-        return map;
-    }
-
-    @Override
-    public int countBlog() {
-        return blogDao.getAllBlog().size();
-    }
-
-    @Override
-    public List<Blog> searchAllBlog(Blog blog) {
-        return blogDao.searchAllBlog(blog);
-    }
-
-    @Override
-    public int getBlogViewTotal() {
-        return blogDao.getBlogViewTotal();
-    }
-
-    @Override
-    public int getBlogCommentTotal() {
-        return blogDao.getBlogCommentTotal();
+    public int getAllBlogCount() {
+        return blogDao.getAllBlogCount();
     }
     @Override
     public int getBlogCommentTotalById(Long id) {
         return blogDao.getBlogCommentTotalById(id);
     }
-
     @Override
     public int deleteTags(Long tid,Long bid) {
         return blogDao.deleteTags(tid,bid);
     }
-
-    @Override
-    public int getBlogAndTag(Long tid, Long bid) {
-        return blogDao.getBlogAndTag(tid,bid);
-    }
-
-
     @Override    //新增博客
     public int saveBlog(Blog blog) {
         blog.setCreateTime(new Date());
@@ -149,7 +104,6 @@ public class BlogServiceImpl implements BlogService {
         }
         return 1;
     }
-
     @Override   //编辑博客
     public int updateBlog(Blog blog) {
         blog.setUpdateTime(new Date());
@@ -165,10 +119,8 @@ public class BlogServiceImpl implements BlogService {
         }
         return blogDao.updateBlog(blog);
     }
-
     @Override
     public int deleteBlog(Long id) {
         return blogDao.deleteBlog(id);
     }
-
 }

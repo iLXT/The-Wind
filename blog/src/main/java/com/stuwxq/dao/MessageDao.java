@@ -15,10 +15,10 @@ import java.util.List;
 @Repository
 public interface MessageDao {
 
-    //添加一个评论
+    //添加一条留言
     int saveMessage(Message message);
 
-    //查询父级评论
+    //查询父级留言
     List<Message> findByParentIdNull(@Param("ParentId") Long ParentId);
 
     //查询一级回复
@@ -27,8 +27,8 @@ public interface MessageDao {
     //查询二级以及所有子集回复
     List<Message> findByReplayId(@Param("childId") Long childId);
 
-    //删除评论
+    //删除留言
     void deleteMessage(Long id);
-
+    //得到留言数
     int getMessageTotal();
 }

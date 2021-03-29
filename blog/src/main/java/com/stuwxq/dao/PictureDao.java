@@ -13,6 +13,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface PictureDao {
+
     List<Picture> listPicture();
 
     int savePicture(Picture picture);

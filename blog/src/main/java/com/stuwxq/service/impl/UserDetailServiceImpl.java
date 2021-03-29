@@ -41,12 +41,8 @@ public class UserDetailServiceImpl implements UserDetailsService {
         HttpSession session = request.getSession();
         //1.根据用户名去数据库查询，如果不存在，则抛出异常
         User user = userService.queryUserByName(username);
-
-
         if (user==null) {
             throw new BadCredentialsException("账号不存在，请重新输入");
-
-
         }else {
            // String encodePwd = passwordEncoder.encode(user.getPassword());//密码：123456
             //System.out.println("加密后密码：" + encodePwd);

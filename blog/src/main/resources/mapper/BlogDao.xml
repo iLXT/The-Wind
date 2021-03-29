@@ -53,9 +53,8 @@
         where b.type_id = t.id and  u.id = b.user_id order by b.update_time desc
     </select>
 
-    <select id="getAllBlog" resultMap="blog">  /*后台博客展示*/
-        select b.id, b.title, b.update_time, b.recommend, b.type_id, b.published,
-               t.id typeid, t.name typename
+    <select id="getAllBlogCount" resultType="Integer">  /*获取博客数*/
+        select count(*)
         from t_blog b, t_type t
         where b.type_id = t.id    /*博客类型id=类型id*/
     </select>
@@ -64,6 +63,7 @@
                t.id typeid, t.name typename
         from t_blog b, t_type t
         where b.type_id = t.id    /*博客类型id=类型id*/
+        order by b.create_time desc
     </select>
     <!--查询文章管理列表-->
     <select id="getAllBlogQuery" resultMap="blog">
@@ -90,7 +90,7 @@
     </select>
 
     <select id="getAllRecommendBlog" resultMap="blog">
-        select id, title, recommend from t_blog order by update_time desc;
+        select id, title, recommend from t_blog order by update_time desc limit 8;
     </select>
 
     <select id="getBlog" resultMap="blog"> /*后台展示博客*/
@@ -174,9 +174,9 @@
         where DATE_FORMAT(b.update_time, "%Y") = #{year}
     </select>
 
-    <select id="searchByTitleOrTypeOrRecommend" parameterType="com.stuwxq.queryvo.SearchBlog" resultMap="blog">
+    <select id="searchByTitleOrType" parameterType="com.stuwxq.queryvo.SearchBlog" resultMap="blog">
         <bind name="pattern" value="'%' + title + '%'" />
-        select b.id,b.title,b.update_time,b.recommend,b.type_id,t.id typeid,t.name typename from blog.t_blog b ,blog.t_type t
+        select b.id,b.title,b.update_time,b.recommend,b.published,b.type_id,t.id typeid,t.name typename from blog.t_blog b ,blog.t_type t
         <where>
             <if test="1 == 1">
                 b.type_id = t.id

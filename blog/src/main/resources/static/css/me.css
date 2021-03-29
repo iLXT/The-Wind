@@ -79,7 +79,19 @@ body {
 }
 .aboutme-bg{
     background: url("/images/bg9.jpg");
-    background-size: cover;
+    background-attachment:fixed;
+    background-size: 100%;
+}
+.search-bg{
+    background: url("/images/searchbg.jpg");
+    background-attachment:fixed;
+    background-size: 100%;
+}
+.manage-bg{
+    background: url("/images/bg2.jpg");
+    background-attachment:fixed;
+    background-size: 100%;
+
 }
 /*遮罩层*/
 .class_outer {

@@ -15,8 +15,6 @@ public interface BlogService {
 
     Blog getDetailedBlog(Long id);  //前端展示博客
 
-    List<Blog> getAllBlog();
-
     List<Blog> getAllBlog1();
 
     List<BlogQuery> getAllBlogQuery();
@@ -33,9 +31,7 @@ public interface BlogService {
 
     List<Blog> getSearchBlog(String query);  //全局搜索博客
 
-    Map<String,List<Blog>> archiveBlog();  //归档博客
-
-    int countBlog();  //查询博客条数
+    int getAllBlogCount(); //查询博客条数
 
     int saveBlog(Blog blog);
 
@@ -43,17 +39,10 @@ public interface BlogService {
 
     int deleteBlog(Long id);
 
-    List<Blog> searchAllBlog(Blog blog);  //后台根据标题、分类、推荐搜索博客
-
-    int getBlogViewTotal();
-
-    int getBlogCommentTotal();
-
     int getBlogCommentTotalById(Long id);
 
     int deleteTags(Long tid,Long bid);
 
-    int getBlogAndTag(Long tid,Long bid);
 
 
 

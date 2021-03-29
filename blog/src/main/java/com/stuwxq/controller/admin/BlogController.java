@@ -50,17 +50,6 @@ public class BlogController {
         return "admin/blogs";
     }
 
-    /*@PostMapping("/blogs/search")  //按条件查询博客
-    public String searchBlogs(Blog blog, @RequestParam(required = false,defaultValue = "1",value = "pagenum")int pagenum, Model model){
-        PageHelper.startPage(pagenum, 5);
-        List<Blog> allBlog = blogService.searchAllBlog(blog);
-        //得到分页结果对象
-        PageInfo pageInfo = new PageInfo(allBlog);
-        model.addAttribute("pageInfo", pageInfo);
-        model.addAttribute("message", "查询成功");
-        setTypeAndTag(model);
-        return "admin/blogs::blogList";
-    }*/
     //    搜索博客
     @PostMapping("/blogs/search")
     public String search(SearchBlog searchBlog, Model model,
@@ -106,16 +95,13 @@ public class BlogController {
             blogService.saveBlog(blog);
         } else {
             blogService.updateBlog(blog);
-
             List<Tag> oldlist = tagService.getTagsList(blog.getId());
             for (Tag tag: oldlist) {
                 if (!newlist.contains(tag)){
                     blogService.deleteTags(tag.getId(),blog.getId());
                 }
-
             }
         }
-
         attributes.addFlashAttribute("msg", "新增成功");
         return "redirect:/admin/blogs";
     }

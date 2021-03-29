@@ -13,6 +13,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface FriendLinkDao {
+
     List<FriendLink> listFriendLink();
 
     int saveFriendLink(FriendLink friendLink);

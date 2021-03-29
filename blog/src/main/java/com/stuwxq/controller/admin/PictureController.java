@@ -51,7 +51,6 @@ public class PictureController {
             if(result.hasErrors()){
                 return "admin/pictures-input";
             }
-
             int P = pictureService.savePicture(picture);
             if (P == 0 ) {
                 attributes.addFlashAttribute("message", "新增失败");

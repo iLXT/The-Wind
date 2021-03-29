@@ -14,10 +14,7 @@ public interface CommentDao {
     //根据创建时间倒序来排
     List<Comment> findByBlogIdAndParentCommentNull(@Param("blogId") Long blogId, @Param("blogParentId") Long blogParentId);
 
-    //查询父级对象
-    Comment findByParentCommentId(@Param("parentCommentId")Long parentcommentid);
-
-    //查询我自己
+    //通过id查询评论
     Comment findById(@Param("Id")Long id);
 
 
